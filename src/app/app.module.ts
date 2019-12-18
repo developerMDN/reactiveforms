@@ -10,10 +10,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { APP_ROUTING } from './app.routing';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule,  MatInputModule, MatAutocompleteModule  } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
-@NgModule({
+@NgModule({  
   declarations: [
     AppComponent,
     EmployeeComponent,
@@ -27,6 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatAutocompleteModule,
     APP_ROUTING
   ],
   providers: [],

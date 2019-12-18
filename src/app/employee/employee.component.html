@@ -1,10 +1,10 @@
 <h1>Employee</h1>
 <form [formGroup]="employeeForm">
     <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Name" aria-label="Number" matInput [formControlName]="name" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let name of  options" [value]="option">
-                {{option}}
+        <input type="text" placeholder="select employee" aria-label="Number" matInput formControlName="name" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let employee of employees$ | async" [value]="employee">
+                {{employee.names}}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>

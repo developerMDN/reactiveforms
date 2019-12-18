@@ -11,43 +11,45 @@ export class EmployeeService {
 
   getEmployees(): Observable<Array<IEmployee>> {
 
-    const employee: IEmployee[] = 
-    [
+    const employees: IEmployee[] = [
       {
+        id: 11111,
         names: 'John Nelson',
         lastnames: 'Rodriguez Garzon'
       },
       {
+        id: 222222,
+        names: 'Ana Maria',
+        lastnames: 'Perez Diaz'
+      },
+      {
+        id: 33333,
+        names: 'Juan Carlos',
+        lastnames: 'Parra Bohorquez'
+      },
+      {
+        id: 444444,
+        names: 'Maria Angelica',
+        lastnames: 'Diaz Garzon'
+      },
+      {
+        id: 5555555,
         names: 'Diana Milena',
-        lastnames: 'Rodriguez Beltran'
+        lastnames: 'Castro Pardo'
       },
       {
-        names: 'Sandra Maria',
-        lastnames: 'Pardo Perez'
+        id: 6666666,
+        names: 'Oscar Fernando',
+        lastnames: 'Ruiz Prada'
       },
       {
-        names: 'Luz Angelica',
-        lastnames: 'Beltran Maquez'
-      },
-      {
-        names: 'Duver Alberto',
-        lastnames: 'Duram Garzon'
-      },
-      {
-        names: 'Carolina',
-        lastnames: 'Cardena Achuri'
-      },
-      {
-        names: 'Maria Fernanda',
-        lastnames: 'Contreras Zuluaga'
-      },
-      {
-        names: 'Alejandra',
-        lastnames: 'Cifuentes Tellez'
+        id: 7777777,
+        names: 'Sandra Liliana',
+        lastnames: 'Casas Ruiz'
       }
     ];
 
-    return of(employee);
+    return of(employees);
 
   }
 }

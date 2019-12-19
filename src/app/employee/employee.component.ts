@@ -32,13 +32,9 @@ export class EmployeeComponent implements OnInit {
         map(emp => emp ? this.filterEmployee(emp) : this.employees.slice())
       );
 
-    this.service.getEmployees().subscribe(data => {
-      this.employees = data;
-    });
+    this.service.getEmployees().subscribe(data => { this.employees = data; });
 
-    this.employeeForm.valueChanges.subscribe(data => {
-      console.log(data);
-    });
+    this.employeeForm.valueChanges.subscribe(data => { console.log(data); });
   }
 
   private filterEmployee(value: any): IEmployee[] {
@@ -54,9 +50,7 @@ export class EmployeeComponent implements OnInit {
       .filter(emp => emp.names.toLowerCase().includes(filterValue));
   }
 
-  get names() {
-    return this.employeeForm.get('names');
-  }
+  get names() { return this.employeeForm.get('names'); }
 
   displayFn(employee?: IEmployee): string | undefined {
     return employee ? employee.names : undefined;

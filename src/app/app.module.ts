@@ -12,6 +12,7 @@ import { APP_ROUTING } from './app.routing';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { MatButtonModule,  MatInputModule, MatAutocompleteModule  } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule, MatCardModule } from '@angular/material';
 
 @NgModule({  
   declarations: [
@@ -29,6 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatGridListModule,
+    MatCardModule
     APP_ROUTING
   ],
   providers: [],

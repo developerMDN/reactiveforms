@@ -13,7 +13,7 @@ import { startWith, map } from 'rxjs/operators';
 export class EmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
-  employees$: Observable<IEmployee[]>;
+  filteredEmployees: Observable<IEmployee[]>;
   employees: IEmployee[];
 
   constructor(
@@ -23,39 +23,38 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
 
     this.employeeForm = this.fb.group({
-      name: ['']
+      names: ['']
     });
+
+    this.filteredEmployees = this.names.valueChanges
+    .pipe(
+      startWith(''),
+      map(emp => emp ? this.filter(emp) : this.employees.slice())
+    );
 
     this.service.getEmployees().subscribe(data => {
       this.employees = data;
     });
 
-    this.employees$ = this.name.valueChanges
-    .pipe(
-      startWith(''),
-      map(val => this.filter(val as string))
-    );
-
     this.employeeForm.valueChanges.subscribe(data => {
       console.log(data);
-      
     });
   }
 
   private filter(value: string): IEmployee[] {
     if (value) {
+      const filterValue = value.toLowerCase();
       return this.employees
-      .filter(e => e.names.toLowerCase()
-      .includes(value.toLowerCase())).map(e => e);
+        .filter(emp => emp.names.toLowerCase().includes(filterValue));
     }
   }
 
-  get name()/*: FormControl*/ {
-    return this.employeeForm.get('name');
+  get names() {
+    return this.employeeForm.get('names');
   }
 
   displayFn(employee): string {
-    return employee ? employee.names : employee;
+    return employee ? employee.names : undefined;
   }
 
 }

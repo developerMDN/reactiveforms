@@ -1,9 +1,9 @@
 <h1>Employee</h1>
 <form [formGroup]="employeeForm">
     <mat-form-field>
-        <input matInput placeholder="select employee" aria-label="IEmployee" [matAutocomplete]="auto" formControlName="names">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let employee of filteredEmployees | async" [value]="employee.names">
+        <input matInput placeholder="select employee" [matAutocomplete]="auto" formControlName="names">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let employee of filteredEmployeesByName | async" [value]="employee">
                 {{employee.names}}
             </mat-option>
         </mat-autocomplete>

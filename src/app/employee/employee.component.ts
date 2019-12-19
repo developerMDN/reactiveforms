@@ -13,7 +13,7 @@ import { startWith, map } from 'rxjs/operators';
 export class EmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
-  filteredEmployees: Observable<IEmployee[]>;
+  filteredEmployeesByName: Observable<IEmployee[]>;
   employees: IEmployee[];
 
   constructor(
@@ -26,11 +26,11 @@ export class EmployeeComponent implements OnInit {
       names: ['']
     });
 
-    this.filteredEmployees = this.names.valueChanges
-    .pipe(
-      startWith(''),
-      map(emp => emp ? this.filter(emp) : this.employees.slice())
-    );
+    this.filteredEmployeesByName = this.names.valueChanges
+      .pipe(
+        startWith(''),
+        map(emp => emp ? this.filterEmployee(emp) : this.employees.slice())
+      );
 
     this.service.getEmployees().subscribe(data => {
       this.employees = data;
@@ -41,20 +41,24 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  private filter(value: string): IEmployee[] {
-    if (value) {
-      const filterValue = value.toLowerCase();
-      return this.employees
-        .filter(emp => emp.names.toLowerCase().includes(filterValue));
+  private filterEmployee(value: any): IEmployee[] {
+    let filterValue = '';
+
+    if (typeof value === 'object') {
+      filterValue = value.names.toLowerCase();
+    } else if (typeof value === 'string') {
+      filterValue = value.toLowerCase();
     }
+
+    return this.employees
+      .filter(emp => emp.names.toLowerCase().includes(filterValue));
   }
 
   get names() {
     return this.employeeForm.get('names');
   }
 
-  displayFn(employee): string {
+  displayFn(employee?: IEmployee): string | undefined {
     return employee ? employee.names : undefined;
   }
-
 }
